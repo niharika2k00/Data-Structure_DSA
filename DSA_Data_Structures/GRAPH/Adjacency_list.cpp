@@ -14,10 +14,10 @@ void addEdge(vector<int> adj[], int u, int v)
 
 void printGraph(vector<int> adj[], int V)
 {
-    for (int v = 0; v < V; ++v)
+    for (int i = 0; i < V; ++i)
     {
-        cout << " | " << v << " | ";
-        for (auto x : adj[v])
+        cout << " | " << i << " | ";
+        for (auto x : adj[i]) // traversing on a single list[row]
             cout << "-> " << x;
         printf("\n");
     }

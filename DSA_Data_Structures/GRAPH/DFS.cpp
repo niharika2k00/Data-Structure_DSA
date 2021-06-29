@@ -35,7 +35,7 @@ public:
     void dfsUtil(int start, vector<bool> &visited)
     {
         visited[start] = true;
-        cout << "DFS Node in list : " << start /* << adjacency_list[start] */ << endl;
+        cout << "DFS Node in list : " << start /* << adjacency_list[start] */;
 
         // Recur for all the vertices adjacent(connected) to this vertex
         for (auto i = adjacency_list[start].begin(); i != adjacency_list[start].end(); ++i)

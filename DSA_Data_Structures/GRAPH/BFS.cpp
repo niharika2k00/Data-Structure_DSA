@@ -12,6 +12,7 @@ public:
     // vector<string> Vertex = {"a", "b", "c", "d"};
     vector<vector<int>> adjacency_list; // declaration
 
+    // CONSTRUCTOR
     Graph(int v)
     {
         index = 0;
@@ -55,6 +56,7 @@ public:
     void BFS(int vertex)
     {
         queue<int> Q;
+        // cout << adjacency_list.size();
         // vector<int> visited(adjacency_list.size()) = {0};  // vector <int> A (10) = {0}
         vector<bool> visited(adjacency_list.size(), false); // vector <bool> A(10,false) + memory allocate
 
