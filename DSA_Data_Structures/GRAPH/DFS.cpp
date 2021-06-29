@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// TIME COMPLEXITY ==> O(V + E)
+
 class Graph
 {
 public:
@@ -35,9 +37,9 @@ public:
     void dfsUtil(int start, vector<bool> &visited)
     {
         visited[start] = true;
-        cout << "DFS Node in list : " << start /* << adjacency_list[start] */;
+        cout << "DFS Node in list : " << start /* << adjacency_list[start] */ << "\t";
 
-        // Recur for all the vertices adjacent(connected) to this vertex
+        // for all the vertices adjacent(connected) to this vertex(i) ---------- means i th row traverse
         for (auto i = adjacency_list[start].begin(); i != adjacency_list[start].end(); ++i)
         {
             cout << "i = " << *i << endl;
