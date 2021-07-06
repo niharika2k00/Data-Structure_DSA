@@ -13,8 +13,11 @@ struct BST_Node
     struct BST_Node *right;
     struct BST_Node *left;
 };
-
 struct BST_Node *start = NULL, *newnode = NULL; // Global variables are declared here...
+
+void insertNode();
+void create();
+void binarySearch(struct BST_Node *root);
 
 int main(void)
 {
@@ -24,10 +27,10 @@ int main(void)
         printf("\n \n **************** CHOOSE AN OPTION **********************");
         printf("\n \n 1. Create a Binary_Search_Tree.");
         printf("\n 2. Display a Binary_Search_Tree.");
-        printf("\n 3. Add a node from the beginning.");
-        printf("\n 4. Add a node from the END.");
-        printf("\n 5. Add a node BEFORE a given node.");
-        printf("\n 6. Add a node AFTER a given node.");
+        printf("\n 3. Display the PRE-ORDER TRAVERSAL of the Binary_Search_Tree.");
+        printf("\n 4. Display the IN-ORDER TRAVERSAL of the Binary_Search_Tree.");
+        printf("\n 5. Display the POST-ORDER TRAVERSAL of the Binary_Search_Tree.");
+        printf("\n 6. Delete a node from BST.");
         printf("\n 7. Delete a node from the beginning.");
         printf("\n 8. Delete a node from the END.");
         printf("\n 9. Delete any given NODE.");
@@ -47,7 +50,7 @@ int main(void)
         switch (option)
         {
         case 1:
-            insert();
+            insertNode();
             break;
         // case 2:
         //     display(start);
@@ -120,12 +123,13 @@ void insertNode()
         start = newnode;
     else
         binarySearch(start);
+    cout << "***** Successfully created a node in the Binary_Search_Tree  *******";
 }
 
 void create()
 {
     int value;
-    cout << "Enter the DATA  of the node to be inserted ";
+    cout << "Enter the DATA  of the node to be inserted : ";
     cin >> value;
     newnode = (struct BST_Node *)malloc(sizeof(struct BST_Node));
     newnode->data = value;
