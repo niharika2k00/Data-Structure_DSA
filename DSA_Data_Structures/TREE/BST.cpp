@@ -14,7 +14,7 @@ struct BST_Node
     struct BST_Node *left;
 };
 
-struct BST_Node *start = NULL, *node = NULL; // Global variables are declared here...
+struct BST_Node *start = NULL, *newnode = NULL; // Global variables are declared here...
 
 int main(void)
 {
@@ -112,15 +112,53 @@ int main(void)
     return 0;
 }
 
-// Creation of Binary_Search_Tree.
-void insert()
+// CREATION OF  Binary_Search_Tree.
+void insertNode()
 {
     create();
+    if (start == NULL)
+        start = newnode;
+    else
+        binarySearch(start);
 }
 
 void create()
 {
-    int data;
+    int value;
     cout << "Enter the DATA  of the node to be inserted ";
-    cin >> data;
+    cin >> value;
+    newnode = (struct BST_Node *)malloc(sizeof(struct BST_Node));
+    newnode->data = value;
+    newnode->left = newnode->right = NULL;
+}
+
+// finding the position of the NEWNODE
+void binarySearch(struct BST_Node *root)
+{
+    if ((newnode->data > root->data) && (root->right != NULL))
+        binarySearch(root->right);
+    else if ((newnode->data > root->data) && (root->right == NULL))
+        root->right = newnode;
+    else if ((newnode->data < root->data) && (root->left != NULL))
+        binarySearch(root->left);
+    else if ((newnode->data < root->data) && (root->left == NULL))
+        root->left = newnode;
+}
+
+// PREORDER TRAVERSAL ---------  RECURSIVE METHOD
+void preOrder()
+{
+}
+// INORDER TRAVERSAL ---------  RECURSIVE METHOD
+void inOrder()
+{
+}
+// POST TRAVERSAL ---------  RECURSIVE METHOD
+void post()
+{
+}
+
+// DELETING A SINGLE NODE
+void dekete()
+{
 }
