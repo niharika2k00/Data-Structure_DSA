@@ -22,6 +22,7 @@ void binarySearch(struct BST_Node *root);
 void preOrder(struct BST_Node *tree);
 void inOrder(struct BST_Node *tree);
 void postOrder(struct BST_Node *tree);
+void levelOrderTraversal(struct BST_Node *root);
 
 int main(void)
 {
@@ -33,7 +34,7 @@ int main(void)
         printf("\n 2. Display the PRE-ORDER TRAVERSAL of the Binary_Search_Tree.");
         printf("\n 3. Display the IN-ORDER TRAVERSAL of the Binary_Search_Tree.");
         printf("\n 4. Display the POST-ORDER TRAVERSAL of the Binary_Search_Tree.");
-        printf("\n 5. Delete a node from BST.");
+        printf("\n 5. Display the LEVEL-ORDER TRAVERSAL using Queue of the Binary_Search_Tree.");
         printf("\n 6. Delete a node from the beginning.");
         printf("\n 8. Delete a node from the END.");
         printf("\n 9. Delete any given NODE.");
@@ -67,9 +68,10 @@ int main(void)
             cout << "______ Post-Order traversal of a Binary Search Tree ______\n";
             postOrder(root);
             break;
-        // case 5:
-        //     addbefr_givennode();
-        //     break;
+        case 5:
+            cout << "______ Level-Order traversal of a Binary Search Tree ______\n";
+            levelOrderTraversal(root);
+            break;
         // case 6:
         //     addaftr_givennode();
         //     break;
@@ -199,7 +201,47 @@ void postOrder(struct BST_Node *tree)
     cout << tree->data;
 }
 
-// DELETING A SINGLE NODE
-void delete ()
+// LEVEL ORDER TRAVERSAL using Queue
+void levelOrderTraversal(struct BST_Node *root) //  Time Complexity : O(n)
 {
+    /* 
+       =====  ALGORITHM ====== 
+       if(root == NULL) return
+       else
+       {
+          *  create a QUEUE data structure
+          *  enqueue the root
+          *  Loop unless Q not Empty 
+                     --- print ---
+                     Dequeue(remove) the front node
+                     check its left child
+                     check its right child
+       }
+    */
+
+    if (root == NULL)
+        return;
+
+    queue<BST_Node *> Q;
+    Q.push(root); // Enqueue
+
+    while (!Q.empty())
+    {
+        BST_Node *FrontNode = Q.front();
+        cout << FrontNode->data << "\t";
+        Q.pop();
+
+        // Enqueue left child
+        if (FrontNode->left != NULL)
+            Q.push(FrontNode->left);
+
+        // Enqueue right child
+        if (FrontNode->right != NULL)
+            Q.push(FrontNode->right);
+    }
 }
+
+// DELETING A SINGLE NODE
+/* void delete ()
+{
+} */
