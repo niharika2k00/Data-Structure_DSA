@@ -10,14 +10,18 @@ using namespace std;
 struct BST_Node
 {
     int data;
-    struct BST_Node *right;
-    struct BST_Node *left;
+    struct BST_Node *right; // right child
+    struct BST_Node *left;  // left child
 };
-struct BST_Node *start = NULL, *newnode = NULL; // Global variables are declared here...
+struct BST_Node *root = NULL, *newnode = NULL; // Global variables are declared here...
 
+// prototypes of the declared functions
 void insertNode();
 void create();
 void binarySearch(struct BST_Node *root);
+void preOrder(struct BST_Node *tree);
+void inOrder(struct BST_Node *tree);
+void postOrder(struct BST_Node *tree);
 
 int main(void)
 {
@@ -26,12 +30,11 @@ int main(void)
     {
         printf("\n \n **************** CHOOSE AN OPTION **********************");
         printf("\n \n 1. Create a Binary_Search_Tree.");
-        printf("\n 2. Display a Binary_Search_Tree.");
-        printf("\n 3. Display the PRE-ORDER TRAVERSAL of the Binary_Search_Tree.");
-        printf("\n 4. Display the IN-ORDER TRAVERSAL of the Binary_Search_Tree.");
-        printf("\n 5. Display the POST-ORDER TRAVERSAL of the Binary_Search_Tree.");
-        printf("\n 6. Delete a node from BST.");
-        printf("\n 7. Delete a node from the beginning.");
+        printf("\n 2. Display the PRE-ORDER TRAVERSAL of the Binary_Search_Tree.");
+        printf("\n 3. Display the IN-ORDER TRAVERSAL of the Binary_Search_Tree.");
+        printf("\n 4. Display the POST-ORDER TRAVERSAL of the Binary_Search_Tree.");
+        printf("\n 5. Delete a node from BST.");
+        printf("\n 6. Delete a node from the beginning.");
         printf("\n 8. Delete a node from the END.");
         printf("\n 9. Delete any given NODE.");
         printf("\n 10. Delete the entire Binary_Search_Tree.");
@@ -52,16 +55,18 @@ int main(void)
         case 1:
             insertNode();
             break;
-        // case 2:
-        //     display(start);
-        //     // display();
-        //     break;
-        // case 3:
-        //     addbeginning();
-        //     break;
-        // case 4:
-        //     addend();
-        //     break;
+        case 2:
+            cout << "______ Post-Order traversal of a Binary Search Tree ______\n";
+            preOrder(root);
+            break;
+        case 3:
+            cout << "______ Post-Order traversal of a Binary Search Tree ______\n";
+            inOrder(root);
+            break;
+        case 4:
+            cout << "______ Post-Order traversal of a Binary Search Tree ______\n";
+            postOrder(root);
+            break;
         // case 5:
         //     addbefr_givennode();
         //     break;
@@ -85,10 +90,10 @@ int main(void)
         //     break;
         // case 12:
         //     // Reverse();
-        //     Reverse(start);
+        //     Reverse(root);
         //     break;
         // case 13:
-        //     search(start);
+        //     search(root);
         //     break;
         // case 14:
         //     delodd_ele();
@@ -104,7 +109,7 @@ int main(void)
         //     break;
 
         // case 18:
-        //     reversePrint(start);
+        //     reversePrint(root);
         //     break;
         default:
             printf("CHOOSE THE OPTION MENTIONED IN THE MENU.....");
@@ -119,11 +124,11 @@ int main(void)
 void insertNode()
 {
     create();
-    if (start == NULL)
-        start = newnode;
+    if (root == NULL)
+        root = newnode;
     else
-        binarySearch(start);
-    cout << "***** Successfully created a node in the Binary_Search_Tree  *******";
+        binarySearch(root);
+    cout << "***** Successfully inserted a node in the Binary_Search_Tree  *******";
 }
 
 void create()
@@ -137,32 +142,64 @@ void create()
 }
 
 // finding the position of the NEWNODE
-void binarySearch(struct BST_Node *root)
+void binarySearch(struct BST_Node *tree)
 {
-    if ((newnode->data > root->data) && (root->right != NULL))
-        binarySearch(root->right);
-    else if ((newnode->data > root->data) && (root->right == NULL))
-        root->right = newnode;
-    else if ((newnode->data < root->data) && (root->left != NULL))
-        binarySearch(root->left);
-    else if ((newnode->data < root->data) && (root->left == NULL))
-        root->left = newnode;
+    if ((newnode->data > tree->data) && (tree->right != NULL))
+        binarySearch(tree->right);
+    else if ((newnode->data > tree->data) && (tree->right == NULL))
+        tree->right = newnode;
+    else if ((newnode->data < tree->data) && (tree->left != NULL))
+        binarySearch(tree->left);
+    else if ((newnode->data < tree->data) && (tree->left == NULL))
+        tree->left = newnode;
 }
 
 // PREORDER TRAVERSAL ---------  RECURSIVE METHOD
-void preOrder()
+void preOrder(struct BST_Node *tree)
 {
+    if (tree == NULL)
+    {
+        printf("No elements in a tree to display ");
+        return;
+    }
+    cout << tree->data << '\t';
+    if (tree->left != NULL)
+        preOrder(tree->left);
+    if (tree->right != NULL)
+        preOrder(tree->right);
 }
+
 // INORDER TRAVERSAL ---------  RECURSIVE METHOD
-void inOrder()
+void inOrder(struct BST_Node *tree)
 {
+    if (tree == NULL)
+    {
+        printf("No elements in a tree to display ");
+        return;
+    }
+    if (tree->left != NULL)
+        preOrder(tree->left);
+    cout << tree->data;
+    if (tree->right != NULL)
+        preOrder(tree->right);
 }
+
 // POST TRAVERSAL ---------  RECURSIVE METHOD
-void post()
+void postOrder(struct BST_Node *tree)
 {
+    if (tree == NULL)
+    {
+        printf("No elements in a tree to display ");
+        return;
+    }
+    if (tree->left != NULL)
+        preOrder(tree->left);
+    if (tree->right != NULL)
+        preOrder(tree->right);
+    cout << tree->data;
 }
 
 // DELETING A SINGLE NODE
-void dekete()
+void delete ()
 {
 }
