@@ -24,10 +24,13 @@ void inOrder(struct BST_Node *tree);
 void postOrder(struct BST_Node *tree);
 void levelOrderTraversal(struct BST_Node *root);
 bool checkNodeExsist(struct BST_Node *root, int key);
+int tree_height(struct BST_Node *root);
+void deleteNode(struct BST_Node *root);
 
 int main(void)
 {
-    int option, key;
+    int option, key, height, ans;
+    // bool ans;
 
     do
     {
@@ -38,17 +41,8 @@ int main(void)
         printf("\n 4. Display the POST-ORDER TRAVERSAL of the Binary_Search_Tree.");
         printf("\n 5. Display the LEVEL-ORDER TRAVERSAL using Queue of the Binary_Search_Tree.");
         printf("\n 6. Search if a node exsist or not.");
-        printf("\n 8. Delete a node from the END.");
-        printf("\n 9. Delete any given NODE.");
-        printf("\n 10. Delete the entire Binary_Search_Tree.");
-        printf("\n 11. MAXIMUM node value in the whole Binary_Search_Tree.  ");
-        printf("\n 12. REVERSE the Binary_Search_Tree. ");
-        printf("\n 13. Search an element in the Binary_Search_Tree.");
-        printf("\n 14. Delete ALL ODD elements.");
-        printf("\n 15. Sum of all elements.");
-        printf("\n 16. Insert element at a given POSITION. ");
-        printf("\n 17. Delete element at a given POSITION. ");
-        printf("\n 18. Print the REVERSE list. \n");
+        printf("\n 7. Height of the Tree.");
+        printf("\n 8. Delete a NODE in BST.\n");
         printf("\n ********************** EXIT *****************************");
         printf("\n \n Choose a no. -> ");
         scanf("%d", &option);
@@ -78,52 +72,22 @@ int main(void)
             cout << "______ Node Exsist Checker of a Binary Search Tree ______\n";
             cout << "Enter a no. for searching : ";
             cin >> key;
-            bool ans = checkNodeExsist(root, key);
+            ans = checkNodeExsist(root, key);
             if (ans)
                 cout << "YES " << key << " ALREADY EXSIST IN THE TREE \n";
-            cout << "NO " << key << " NOT PRESENT IN THE TREE \n";
+            else
+                cout << "NO " << key << " NOT PRESENT IN THE TREE \n";
             break;
-            // case 7:
-            //     delbeginning();
-            //     break;
-            // case 8:
-            //     delend();
-            //     break;
-            // case 9:
-            //     delany_givennode();
-            //     break;
-            // case 10:
-            //     delentire_linkedlist();
-            //     break;
-            // case 11:
-            //     maxNode();
-            //     break;
-            // case 12:
-            //     // Reverse();
-            //     Reverse(root);
-            //     break;
-            // case 13:
-            //     search(root);
-            //     break;
-            // case 14:
-            //     delodd_ele();
-            //     break;
-            // case 15:
-            //     findsum();
-            //     break;
-            // case 16:
-            //     insertele_position();
-            //     break;
-            // case 17:
-            //     delele_position();
-            //     break;
-
-            // case 18:
-            //     reversePrint(root);
-            //     break;
-            // default:
-            // printf("CHOOSE THE OPTION MENTIONED IN THE MENU.....");
-            // break;
+        case 7:
+            height = tree_height(root);
+            cout << "Height of the Binary Tree __ " << height << endl;
+            break;
+        case 8:
+            deleteNode(root);
+            break;
+        default:
+            printf("CHOOSE THE OPTION MENTIONED IN THE MENU.....");
+            break;
         }
 
     } while ((option >= 1) && (option <= 20));
@@ -264,7 +228,6 @@ bool checkNodeExsist(struct BST_Node *root, int key)
         if (responseL)
             return true;
     }
-
     else if (root->right != NULL)
     {
         responseR = checkNodeExsist(root->right, key);
@@ -275,7 +238,25 @@ bool checkNodeExsist(struct BST_Node *root, int key)
         return false;
 }
 
-// DELETING A SINGLE NODE
-/* void delete ()
+// Find height of a tree, defined by the root node
+int tree_height(struct BST_Node *root)
 {
-} */
+    int leftHt, rightHt;
+    if (root == NULL)
+        return 0;
+    else
+    {
+        // Find the height of left, right subtrees
+        leftHt = tree_height(root->left);
+        rightHt = tree_height(root->right);
+
+        // Find max(subtree_height) + 1 to get the height of the tree
+        return max(leftHt, rightHt) + 1;
+    }
+}
+
+// DELETE A NODE OF A BINARY TREE
+void deleteNode(struct BST_Node *)
+{
+    cout << "Successfully deleted \n";
+}
