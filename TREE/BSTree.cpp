@@ -23,11 +23,12 @@ void preOrder(struct BST_Node *tree);
 void inOrder(struct BST_Node *tree);
 void postOrder(struct BST_Node *tree);
 void levelOrderTraversal(struct BST_Node *root);
-void checkNodeExsist(struct BST_Node *root, int key);
+bool checkNodeExsist(struct BST_Node *root, int key);
 
 int main(void)
 {
-    int option;
+    int option, key;
+
     do
     {
         printf("\n \n **************** CHOOSE AN OPTION **********************");
@@ -75,49 +76,54 @@ int main(void)
             break;
         case 6:
             cout << "______ Node Exsist Checker of a Binary Search Tree ______\n";
-            checkNodeExsist(root, key);
+            cout << "Enter a no. for searching : ";
+            cin >> key;
+            bool ans = checkNodeExsist(root, key);
+            if (ans)
+                cout << "YES " << key << " ALREADY EXSIST IN THE TREE \n";
+            cout << "NO " << key << " NOT PRESENT IN THE TREE \n";
             break;
-        // case 7:
-        //     delbeginning();
-        //     break;
-        // case 8:
-        //     delend();
-        //     break;
-        // case 9:
-        //     delany_givennode();
-        //     break;
-        // case 10:
-        //     delentire_linkedlist();
-        //     break;
-        // case 11:
-        //     maxNode();
-        //     break;
-        // case 12:
-        //     // Reverse();
-        //     Reverse(root);
-        //     break;
-        // case 13:
-        //     search(root);
-        //     break;
-        // case 14:
-        //     delodd_ele();
-        //     break;
-        // case 15:
-        //     findsum();
-        //     break;
-        // case 16:
-        //     insertele_position();
-        //     break;
-        // case 17:
-        //     delele_position();
-        //     break;
+            // case 7:
+            //     delbeginning();
+            //     break;
+            // case 8:
+            //     delend();
+            //     break;
+            // case 9:
+            //     delany_givennode();
+            //     break;
+            // case 10:
+            //     delentire_linkedlist();
+            //     break;
+            // case 11:
+            //     maxNode();
+            //     break;
+            // case 12:
+            //     // Reverse();
+            //     Reverse(root);
+            //     break;
+            // case 13:
+            //     search(root);
+            //     break;
+            // case 14:
+            //     delodd_ele();
+            //     break;
+            // case 15:
+            //     findsum();
+            //     break;
+            // case 16:
+            //     insertele_position();
+            //     break;
+            // case 17:
+            //     delele_position();
+            //     break;
 
-        // case 18:
-        //     reversePrint(root);
-        //     break;
-        default:
-            printf("CHOOSE THE OPTION MENTIONED IN THE MENU.....");
-            break;
+            // case 18:
+            //     reversePrint(root);
+            //     break;
+            // default:
+            // printf("CHOOSE THE OPTION MENTIONED IN THE MENU.....");
+            // break;
         }
 
     } while ((option >= 1) && (option <= 20));
@@ -241,6 +247,32 @@ void levelOrderTraversal(struct BST_Node *root) //  Time Complexity : O(n)
         if (FrontNode->right != NULL)
             Q.push(FrontNode->right);
     }
+}
+
+bool checkNodeExsist(struct BST_Node *root, int key)
+{
+    bool responseL, responseR;
+    if (root == NULL)
+        return false;
+
+    else if (root->data == key)
+        return true;
+
+    else if (root->left != NULL)
+    {
+        responseL = checkNodeExsist(root->left, key);
+        if (responseL)
+            return true;
+    }
+
+    else if (root->right != NULL)
+    {
+        responseR = checkNodeExsist(root->right, key);
+        if (responseR)
+            return true;
+    }
+    else
+        return false;
 }
 
 // DELETING A SINGLE NODE
