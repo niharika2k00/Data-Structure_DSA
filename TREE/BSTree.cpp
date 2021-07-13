@@ -26,11 +26,12 @@ void levelOrderTraversal(struct BST_Node *root);
 bool checkNodeExsist(struct BST_Node *root, int key);
 int tree_height(struct BST_Node *root);
 void ancestors(struct BST_Node *root, int val);
-void commonAncestors(struct BST_Node *root, int a, int b);
+BST_Node *commonAncestors(struct BST_Node *root, int a, int b);
 void deleteNode(struct BST_Node *root);
 
 int main(void)
 {
+    BST_Node *nodeVal;
     int option, key, height, ans, a, b;
     // bool ans;
 
@@ -96,7 +97,8 @@ int main(void)
             cout << "______ Common Ancestors of 2 NODE in a Binary Search Tree ______\n";
             cout << "Enter 2 values  for whose Common Ancestors you want to find: ";
             cin >> a >> b;
-            commonAncestors(root, a, b);
+            nodeVal = commonAncestors(root, a, b);
+            cout << nodeVal->data << "\t";
             break;
         case 10:
             deleteNode(root);
@@ -290,8 +292,16 @@ void ancestors(struct BST_Node *root, int val)
     }
 }
 
-void commonAncestors(struct BST_Node *root, int a, int b)
+BST_Node *commonAncestors(struct BST_Node *root, int a, int b)
 {
+    if (a > root->data && b > root->data)
+        return commonAncestors(root->right, a, b);
+
+    if (a < root->data && b < root->data)
+        return commonAncestors(root->left, a, b);
+
+    // cout << root->data << "\t";
+    return root;
 }
 
 // DELETE A NODE OF A BINARY TREE
