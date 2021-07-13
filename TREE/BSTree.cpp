@@ -25,11 +25,13 @@ void postOrder(struct BST_Node *tree);
 void levelOrderTraversal(struct BST_Node *root);
 bool checkNodeExsist(struct BST_Node *root, int key);
 int tree_height(struct BST_Node *root);
+void ancestors(struct BST_Node *root, int val);
+void commonAncestors(struct BST_Node *root, int a, int b);
 void deleteNode(struct BST_Node *root);
 
 int main(void)
 {
-    int option, key, height, ans;
+    int option, key, height, ans, a, b;
     // bool ans;
 
     do
@@ -42,7 +44,9 @@ int main(void)
         printf("\n 5. Display the LEVEL-ORDER TRAVERSAL using Queue of the Binary_Search_Tree.");
         printf("\n 6. Search if a node exsist or not.");
         printf("\n 7. Height of the Tree.");
-        printf("\n 8. Delete a NODE in BST.\n");
+        printf("\n 8. Ancestors of a Node in BST .");
+        printf("\n 9. Common Ancestors of 2 Nodes in BST.");
+        printf("\n 10. Delete a NODE in BST.\n");
         printf("\n ********************** EXIT *****************************");
         printf("\n \n Choose a no. -> ");
         scanf("%d", &option);
@@ -80,9 +84,21 @@ int main(void)
             break;
         case 7:
             height = tree_height(root);
-            cout << "Height of the Binary Tree __ " << height << endl;
+            cout << "Height of the Binary Tree ---->  " << height << endl;
             break;
         case 8:
+            cout << "______ Ancestors of a NODE in a Binary Search Tree ______\n";
+            cout << "Enter a no. for whose ancestor you want to find: ";
+            cin >> key;
+            ancestors(root, key);
+            break;
+        case 9:
+            cout << "______ Common Ancestors of 2 NODE in a Binary Search Tree ______\n";
+            cout << "Enter 2 values  for whose Common Ancestors you want to find: ";
+            cin >> a >> b;
+            commonAncestors(root, a, b);
+            break;
+        case 10:
             deleteNode(root);
             break;
         default:
@@ -253,6 +269,29 @@ int tree_height(struct BST_Node *root)
         // Find max(subtree_height) + 1 to get the height of the tree
         return max(leftHt, rightHt) + 1;
     }
+}
+
+// Find all the ANCESTORS of a node
+void ancestors(struct BST_Node *root, int val)
+{
+    if (root == NULL)
+        return;
+    if (root->data == val)
+        return;
+    if (val > root->data)
+    {
+        cout << root->data << "\t";
+        ancestors(root->right, val);
+    }
+    if (val < root->data)
+    {
+        cout << root->data << "\t";
+        ancestors(root->left, val);
+    }
+}
+
+void commonAncestors(struct BST_Node *root, int a, int b)
+{
 }
 
 // DELETE A NODE OF A BINARY TREE
