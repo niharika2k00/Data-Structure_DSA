@@ -34,9 +34,13 @@
 
 // -----------------  SHORTEST PATH ALGORITHM   ----------------
 #Important points:
-Dijkstra-- -- > *when + ve weights are associated with edges in the graph.*Drawback : cant deal with - ve edges
+Dijkstra-- -- > * when + ve weights are associated with edges in the graph.
+                * Drawback : cant deal with - ve edges
 
- Bellman- Ford-- -- >     when -ve weights and -ve cycles associated with edges in the Directed graph.
+ Bellman - Ford-- -- > * when -ve weights and -ve cycles associated with edges in the Directed graph.
+                      * for Negative Cycle not VALID.
+                      * Relaxation upto (N - 1) times.
+                      * Take the MINIMUM cost of the edge
 
  Floyd Warshall-- -- > shotest path between any pair of edges
 
@@ -52,10 +56,13 @@ Prims Algorithm  --->  *select min cost edge *then take a vertices already conne
 Kruskal Algorithm--->  *Always select the min cost edge 
                        *But if it forms a CYCLE then dont consider it
 
+
+
+
 #Time complexities:
    BFS : O(V + E)
    Dijkstra : O(V.log(E)) 
-   Bellman - Ford : O(V.E) 
+   Bellman - Ford : O(V.E) = O(n^2)
    Floyd - Warshall : O(V ^ 3)
                                                                      
     
