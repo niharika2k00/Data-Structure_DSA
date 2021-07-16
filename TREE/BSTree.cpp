@@ -309,3 +309,28 @@ void deleteNode(struct BST_Node *)
 {
     cout << "Successfully deleted \n";
 }
+
+vector<int> inorder;
+bool checkBST(Node *root)
+{
+
+    if (root == NULL)
+        return true;
+
+    if (root->left != NULL)
+        checkBST(root->left);
+
+    inorder.push_back(root->data);
+
+    if (root->right != NULL)
+        checkBST(root->right);
+
+    // check whether the inorder is ascending or not for BST
+    for (int i = 0; i < inorder.size() - 1; i++)
+    {
+        if (inorder[i] >= inorder[i + 1])
+            return false;
+    }
+
+    return true;
+}
