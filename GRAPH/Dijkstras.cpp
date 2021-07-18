@@ -6,35 +6,39 @@
 
 using namespace std;
 
-// prototype
-// void Dijkstra(vector<pair<int, int>> &graph, int source, int n);
+// graph(Vertexconnected , dist);
+// queue(dist ,Vertexconnected )
 
-void Dijkstra(vector<pair<int, int>> *graph, int source, int n)
+void Dijkstra(vector<pair<int, int>> graph[], int source, int n)
 {
 
-    cout << source;
-
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; // min-heap ; In pair => (dist,from)
-    vector<int> distance(n + 1, INT_MAX);                                               // 1-indexed array for calculating shortest paths;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> queue; // min-heap ; In pair => (dist,from)
+    vector<int> distance(n + 1, INT_MAX);                                                  // 1-indexed array for calculating shortest paths;
 
     distance[source] = 0;
-    pq.push(make_pair(0, source)); // (dist,from)
+    queue.push(make_pair(0, source)); // (dist,from)
 
-    while (!pq.empty())
+    while (!queue.empty())
     {
-        int dist = pq.top().first;
-        int prev = pq.top().second;
-        pq.pop();
+        int neighbourDist = queue.top().first;
+        int neighbourVertex = queue.top().second;
+        cout << "neighbourDist = " << neighbourDist << " neighbourVertex = " << neighbourVertex << endl;
+
+        queue.pop();
 
         vector<pair<int, int>>::iterator it;
-        for (it = graph[prev].begin(); it != graph[prev].end(); it++)
+        for (it = graph[neighbourVertex].begin(); it != graph[neighbourVertex].end(); it++)
         {
+            // next pair
             int next = it->first;
             int nextDist = it->second;
-            if (distance[next] > distance[prev] + nextDist)
+
+            cout << " next = " << next << " nxtDIST = " << nextDist << endl;
+
+            if (distance[next] > distance[neighbourVertex] + nextDist)
             {
-                distance[next] = distance[prev] + nextDist;
-                pq.push(make_pair(distance[next], next));
+                distance[next] = distance[neighbourVertex] + nextDist;
+                queue.push(make_pair(distance[next], next));
             }
         }
     }
