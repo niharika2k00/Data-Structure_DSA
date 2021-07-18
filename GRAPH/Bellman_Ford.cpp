@@ -95,4 +95,7 @@ int main()
 point mypoint = {0, 1};
 a.push_back(mypoint);
 
+   OR 
+
+ vec.push_back(constructor())
  */
