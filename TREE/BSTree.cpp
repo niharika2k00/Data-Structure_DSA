@@ -28,12 +28,13 @@ int tree_height(struct BST_Node *root);
 void ancestors(struct BST_Node *root, int val);
 BST_Node *commonAncestors(struct BST_Node *root, int a, int b);
 void deleteNode(struct BST_Node *root);
+bool isHeap(struct BST_Node *root);
 
 int main(void)
 {
     BST_Node *nodeVal;
     int option, key, height, ans, a, b;
-    // bool ans;
+    bool res;
 
     do
     {
@@ -47,7 +48,8 @@ int main(void)
         printf("\n 7. Height of the Tree.");
         printf("\n 8. Ancestors of a Node in BST .");
         printf("\n 9. Common Ancestors of 2 Nodes in BST.");
-        printf("\n 10. Delete a NODE in BST.\n");
+        printf("\n 10. Delete a NODE in BST.");
+        printf("\n 11. Check whether this BST is a Heap or Not .\n");
         printf("\n ********************** EXIT *****************************");
         printf("\n \n Choose a no. -> ");
         scanf("%d", &option);
@@ -103,6 +105,13 @@ int main(void)
         case 10:
             deleteNode(root);
             break;
+        case 11:
+            res = isHeap(root);
+            if (res)
+                cout << "Given binary tree is a Heap\n";
+            else
+                cout << "Given binary tree is not a Heap\n";
+            break;
         default:
             printf("CHOOSE THE OPTION MENTIONED IN THE MENU.....");
             break;
@@ -112,7 +121,7 @@ int main(void)
     return 0;
 }
 
-// CREATION OF  Binary_Search_Tree.
+// __________________   CREATION OF  Binary_Search_Tree.    _________________
 void insertNode()
 {
     create();
@@ -145,6 +154,7 @@ void binarySearch(struct BST_Node *tree)
     else if ((newnode->data < tree->data) && (tree->left == NULL))
         tree->left = newnode;
 }
+// __________________________________________________________________________
 
 // PREORDER TRAVERSAL ---------  RECURSIVE METHOD
 void preOrder(struct BST_Node *tree)
@@ -204,8 +214,8 @@ void levelOrderTraversal(struct BST_Node *root) //  Time Complexity : O(n)
           *  Loop unless Q not Empty 
                      --- print ---
                      Dequeue(remove) the front node
-                     check its left child
-                     check its right child
+                     check its left child     ? Q.push()
+                     check its right child   ? Q.push()
        }
     */
 
@@ -310,27 +320,56 @@ void deleteNode(struct BST_Node *)
     cout << "Successfully deleted \n";
 }
 
-vector<int> inorder;
-bool checkBST(Node *root)
+int countNodes(struct BST_Node *root)
 {
-
     if (root == NULL)
-        return true;
+        return 0;
+    else
+        return (countNodes(root->left) + countNodes(root->right) + 1);
+}
 
-    if (root->left != NULL)
-        checkBST(root->left);
+bool checkCompleteBT(struct BST_Node *root)
+{
+    bool flag = false;
+    queue<BST_Node *> Q;
+    Q.push(root);
 
-    inorder.push_back(root->data);
-
-    if (root->right != NULL)
-        checkBST(root->right);
-
-    // check whether the inorder is ascending or not for BST
-    for (int i = 0; i < inorder.size() - 1; i++)
+    while (!Q.empty())
     {
-        if (inorder[i] >= inorder[i + 1])
-            return false;
-    }
+        BST_Node *temp = Q.front();
+        Q.pop();
 
+        // exsist
+        if (temp->left)
+        {
+            if (flag == true)
+                return false;
+
+            Q.push(temp->left);
+        }
+        else
+            flag = true;
+        // ------------------------
+        if (temp->right)
+        {
+            if (flag == true)
+                return false;
+
+            Q.push(temp->right);
+        }
+        else
+            flag = true;
+    }
     return true;
+}
+
+bool isHeap(struct BST_Node *root)
+{
+    int totalNodes = countNodes(root), index = 0;
+    bool ans = checkCompleteBT(root);
+    if (ans)
+        cout << "It is a Complete Binary Tree" << endl;
+    else
+        cout << "OOpsss !! " << endl;
+    return false;
 }
