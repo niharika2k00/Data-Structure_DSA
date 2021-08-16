@@ -328,7 +328,7 @@ int countNodes(struct BST_Node *root)
         return (countNodes(root->left) + countNodes(root->right) + 1);
 }
 
-bool checkCompleteBT(struct BST_Node *root)
+bool checkCompleteBT(struct BST_Node *root) // Iterative Method for checking Complete Binary_Search_Tree or Not
 {
     bool flag = false;
     queue<BST_Node *> Q;
