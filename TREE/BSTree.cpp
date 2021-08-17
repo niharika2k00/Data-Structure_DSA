@@ -28,7 +28,7 @@ int tree_height(struct BST_Node *root);
 void ancestors(struct BST_Node *root, int val);
 BST_Node *commonAncestors(struct BST_Node *root, int a, int b);
 void deleteNode(struct BST_Node *root);
-bool isHeap(struct BST_Node *root);
+void isHeap(struct BST_Node *root);
 
 int main(void)
 {
@@ -106,11 +106,7 @@ int main(void)
             deleteNode(root);
             break;
         case 11:
-            res = isHeap(root);
-            if (res)
-                cout << "Given binary tree is a Heap\n";
-            else
-                cout << "Given binary tree is not a Heap\n";
+            isHeap(root);
             break;
         default:
             printf("CHOOSE THE OPTION MENTIONED IN THE MENU.....");
@@ -328,7 +324,9 @@ int countNodes(struct BST_Node *root)
         return (countNodes(root->left) + countNodes(root->right) + 1);
 }
 
-bool checkCompleteBT(struct BST_Node *root) // Iterative Method for checking Complete Binary_Search_Tree or Not
+// checking Complete Binary_Search_Tree or Not
+// ITERATIVE METHOD  -----
+bool checkCompleteBT_iterative(struct BST_Node *root) // Iterative Method for checking Complete Binary_Search_Tree or Not
 {
     bool flag = false;
     queue<BST_Node *> Q;
@@ -363,13 +361,46 @@ bool checkCompleteBT(struct BST_Node *root) // Iterative Method for checking Com
     return true;
 }
 
-bool isHeap(struct BST_Node *root)
+// RECURSIVE METHOD -----
+bool checkCompleteBT_recursive(struct BST_Node *root, int index, int totalNodes)
+{
+    if (root == NULL)
+        return true;
+
+    if (index >= totalNodes)
+        return false;
+
+    return (checkCompleteBT_recursive(root->left, 2 * index + 1, totalNodes) && checkCompleteBT_recursive(root->right, 2 * index + 1, totalNodes));
+}
+
+bool heapCheck(struct BST_Node *root)
+{
+
+    if (root->left == NULL && root->right == NULL)
+        return true;
+
+    // only Check Right Subtree as ----------->  for Complete BT Right subtree doesnt exsist without Left
+    if (root->right == NULL)
+        return (root->data >= root->left->data); // as MaxHeap
+
+    else
+    {
+        if (root->data >= root->left->data && root->data >= root->right->data)
+            return ((heapCheck(root->left)) && (heapCheck(root->right)));
+        else
+            return (false);
+    }
+}
+
+void isHeap(struct BST_Node *root)
 {
     int totalNodes = countNodes(root), index = 0;
-    bool ans = checkCompleteBT(root);
-    if (ans)
-        cout << "It is a Complete Binary Tree" << endl;
+    // bool checkComplete = checkCompleteBT_iterative(root);
+    bool checkComplete = checkCompleteBT_recursive(root, index, totalNodes);
+    bool checkHeap = heapCheck(root);
+
+    if (checkComplete && checkHeap)
+        cout << "It is a Complete Binary Tree as well as follows HEAP" << endl;
     else
         cout << "OOpsss !! " << endl;
-    return false;
 }
