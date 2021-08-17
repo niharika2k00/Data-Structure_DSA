@@ -402,5 +402,5 @@ void isHeap(struct BST_Node *root)
     if (checkComplete && checkHeap)
         cout << "It is a Complete Binary Tree as well as follows HEAP" << endl;
     else
-        cout << "OOpsss !! " << endl;
+        cout << "OOpssss this tree is not a Heap  !! " << endl;
 }
