@@ -1,0 +1,29 @@
+
+
+// ----------------------------------------------------------------------------
+                       QUEUE DS
+// ----------------------------------------------------------------------------                      
+
+
+
+
+QUEUE ::
+
+- FIFO
+- pop() deletes the 1st element(FRONT) of the queue
+- push() add element in BACK
+- front() returns a reference to the 1st element 
+- back() returns a reference to the LAST element 
+
+
+DEQUE :: 
+
+Element can be Inserted / Deleted from both the ends
+
+- size() size of the queue
+- push_back()
+- push_front()
+- pop_front()
+- pop_back()
+- back()
+- front()
