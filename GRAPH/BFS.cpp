@@ -10,7 +10,7 @@ public:
     int v;
     int index;
     // vector<string> Vertex = {"a", "b", "c", "d"};
-    vector<vector<int>> adjacency_list; // declaration
+    vector<vector<int>> adjacency_list; // declaration --> Vecotr of Vector means 2D vector
 
     // CONSTRUCTOR
     Graph(int v)
@@ -77,7 +77,7 @@ public:
             for (auto i = adjacency_list[vertex].begin(); i != adjacency_list[vertex].end(); ++i)
             {
                 cout << "i = " << *i << endl;
-                if (!visited[*i])
+                if (!visited[*i]) //  (!true)
                 {
                     visited[*i] = true;
                     Q.push(*i);

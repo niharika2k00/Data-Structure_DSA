@@ -25,7 +25,7 @@ void printGraph(vector<int> adj[], int V)
 
 int main()
 {
-    int V = 5;
+    int V = 5, i;
     vector<int> adj[V];
     addEdge(adj, 0, 1);
     addEdge(adj, 0, 4);
@@ -36,5 +36,10 @@ int main()
     addEdge(adj, 3, 4);
     cout << "\n **************  Adjacency list of vertex   ************* \n";
     printGraph(adj, V);
+
+    cout << "\n\n";
+    for (auto x : adj[1]) // traversing on a single list[row]
+        cout << "-> " << x;
+
     return 0;
 }

@@ -28,6 +28,11 @@
 #𝑷𝒔𝒆𝒖𝒅𝒐 𝒈𝒓𝒂𝒑𝒉 : A graph in which self loops and multiple edges are allowed is called psuedograph.
 
 
+# BFS (Breadth First Traversal) : Traverse layer by layer.Means iterate over the vertices FIRST, then traverse its neighbour(/adjacent) vertices.
+
+# DFS (Depth First Traversal) : Traverse a vertex till its END.
+
+DAG -> Directed Acyclic Graph.
 
 
 
