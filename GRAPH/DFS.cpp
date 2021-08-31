@@ -12,8 +12,7 @@ class Graph
 public:
     int v;
     int index;
-    // vector<string> Vertex = {"a", "b", "c", "d"};
-    vector<vector<int>> adjacency_list; // declaration --  vector of vector
+    vector<vector<int>> adjacency_list; // declaration --> Vecotr of Vector means 2D vector
 
     Graph(int v)
     {

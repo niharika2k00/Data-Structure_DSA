@@ -1,4 +1,9 @@
 
+
+                                                             //    GRAPHS   \\
+
+
+
 #Difference b / w Explicit Graph &Implicit Graph-- ---->
 • Explicit Graph :
     – All vertices are identified individually and represented separately.
@@ -37,7 +42,12 @@ DAG -> Directed Acyclic Graph.
 
 
 
-// -----------------  SHORTEST PATH ALGORITHM   ----------------
+
+
+
+//   __________________________________________________________________________
+//       -----------------  SHORTEST PATH ALGORITHM   ----------------
+//   __________________________________________________________________________
 
 #Important points:
 Dijkstra-- -- > * when + ve weights are associated with edges in the graph.
@@ -56,7 +66,12 @@ Dijkstra-- -- > * when + ve weights are associated with edges in the graph.
 
 
 
-// -----------------  MINIMUN COST SPANNING TREE (greedy method)  ----------------
+
+
+//   __________________________________________________________________________
+//      --------------  MINIMUN COST SPANNING TREE (greedy method)  ---------
+//   __________________________________________________________________________
+
 
 Prims Algorithm  --->  *select min cost edge *then take a vertices already connected to the selected edge 
                        *always maintaing a tree as further connedted min vertice may not form a tree
@@ -67,10 +82,14 @@ Kruskal Algorithm--->  *Always select the min cost edge
 
 
 
+
+
+
 #Time complexities:
    BFS : O(V + E)
    Dijkstra : O(V.log(E)) 
    Bellman - Ford : O(V.E) = O(n^2)
    Floyd - Warshall : O(V ^ 3)
+   Topological Sort :  O(V + E)
                                                                      
     
