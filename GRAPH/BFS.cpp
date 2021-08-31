@@ -75,6 +75,7 @@ public:
 
             // 1st : traversing the list of 2(2--> 0,3)
             for (auto i = adjacency_list[vertex].begin(); i != adjacency_list[vertex].end(); ++i)
+            // for (auto it : adjacency_list[vertex])
             {
                 cout << "i = " << *i << endl;
                 if (!visited[*i]) //  (!true)
@@ -107,3 +108,5 @@ int main()
 
     return 0;
 }
+
+// Note : We are taking 0 ZERO indexing vector , where the 1st vertex is 0.
