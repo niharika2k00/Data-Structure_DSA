@@ -94,7 +94,7 @@ int main()
     cout << "\n**************************   Breath First Traversal  ************************\n";
     // g.vertexInsert();
 
-    g.set_edge(0, 1);
+    g.set_edge(0, 1); // DIRECTED edge
     g.set_edge(0, 2);
     g.set_edge(1, 3);
     g.set_edge(2, 0);

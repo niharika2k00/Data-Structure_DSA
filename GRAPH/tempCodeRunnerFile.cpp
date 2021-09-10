@@ -1,2 +1,1 @@
-;
-            s.pop();
+    // for (auto it = adjacency_list[vertex].begin(); it != adjacency_list[vertex].end(); ++it)

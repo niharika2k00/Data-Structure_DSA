@@ -24,24 +24,24 @@ public:
     void set_edge(int start, int end)
     {
         adjacency_list[start].push_back(end);
-        cout << "start = " << start << "\tend = " << end << "\t value : " << adjacency_list[0][0] << "\n ";
+        cout << "\n"
+             << start << " -->  " << end << " ";
     }
 
     void neighbours_show()
     {
         int k = adjacency_list[0][1];
-        cout << "Node in list[0][1] : " << k << endl;
+        cout << "\nNode in list[0][1] : " << k << endl;
     }
 
     void dfsUtil(int start, vector<bool> &visited)
     {
         visited[start] = true;
-        cout << "DFS Node in list : " << start /* << adjacency_list[start] */ << "\t";
-
-        // for all the vertices adjacent(connected) to this vertex(i) ---------- means i th row traverse
+        cout << "DFS Node in list : " << start << "\t";
+        // for all the vertices adjacent(connected) to this vertex(i) ----------   means i th row traverse
         for (auto i = adjacency_list[start].begin(); i != adjacency_list[start].end(); ++i)
         {
-            cout << "i = " << *i << endl;
+            cout << "\n";
             if (!visited[*i])
                 dfsUtil(*i, visited);
         }

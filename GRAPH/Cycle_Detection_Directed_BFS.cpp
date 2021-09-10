@@ -33,13 +33,12 @@ public:
         adjacency_list[start].push_back(end);
     }
 
-    void topological_Sort_BFS()
+    bool topological_Sort_BFS()
     {
         int size = adjacency_list.size(); // total Vertex
         vector<int> inDegree(size, 0);    //  Number of edges dirrected to it (Node)
-        vector<int> topoDisplay;
         queue<int> Q;
-        int i, vertex;
+        int i, vertex, count = 0;
 
         for (i = 0; i < size; i++)
         {
@@ -55,10 +54,9 @@ public:
         {
             vertex = Q.front();
             Q.pop();
+            count++;
             cout << "Vertex popped from queue : " << vertex << "\n";
-            topoDisplay.push_back(vertex);
 
-            // for (auto it = adjacency_list[vertex].begin(); it != adjacency_list[vertex].end(); ++it)
             for (auto it : adjacency_list[vertex])
             {
                 inDegree[it]--;
@@ -67,13 +65,10 @@ public:
             }
         }
 
-        // DISPLAY ALL THE ELEMENTS IN THE GRAPH
-        cout << "\n";
-        for (auto it : topoDisplay)
-            cout << it << "\t";
-
-        inDegree.clear();
-        cout << "\n\n";
+        if (count == size)
+            return false;
+        else
+            return true;
     }
 };
 
@@ -82,14 +77,23 @@ int main()
     Graph g(6); // total number of VERTEX in the graph
     cout << "\n**************************   Topological Sort using BFS  ************************\n\n";
 
+    // g.set_edge(2, 3);
+    // g.set_edge(3, 1);
+    // g.set_edge(4, 0);
+    // g.set_edge(4, 1);
+    // g.set_edge(5, 0);
+    // g.set_edge(5, 2);
+
+    g.set_edge(0, 1);
+    g.set_edge(1, 2);
     g.set_edge(2, 3);
     g.set_edge(3, 1);
-    g.set_edge(4, 0);
-    g.set_edge(4, 1);
-    g.set_edge(5, 0);
-    g.set_edge(5, 2);
 
-    g.topological_Sort_BFS();
+    bool isCyclic = g.topological_Sort_BFS();
+    if (isCyclic)
+        cout << "\nCYCLE DETECTED \n";
+    else
+        cout << "\nNO CYCLE DETECTED \n";
 
     return 0;
 }
