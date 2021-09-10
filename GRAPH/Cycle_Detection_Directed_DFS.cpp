@@ -33,33 +33,28 @@ public:
         adjacency_list[start].push_back(end);
     }
 
-    bool DFS_CycleCheck(int vertex, vector<int> &visited, vector<int> &dfsCycleVisited)
+    bool DFS_CycleCheck(int vertex, vector<bool> &visited, vector<bool> &dfsCycleVisited)
     {
-        visited[vertex] = 1;
-        dfsCycleVisited[vertex] = 1;
+        visited[vertex] = true;
+        dfsCycleVisited[vertex] = true;
 
         for (auto it : adjacency_list[vertex]) // 1 -->  2 so dfs(2)
-        // for (auto it = adjacency_list[vertex].begin(); it != adjacency_list[vertex].end(); ++it)
         {
-            if (!visited[it])
-            {
-                if (DFS_CycleCheck(it, visited, dfsCycleVisited))
-                    return true;
-                else if (dfsCycleVisited[it])
-                    return true;
-            }
+            if (!visited[it] && DFS_CycleCheck(it, visited, dfsCycleVisited))
+                return true;
+            else if (dfsCycleVisited[it])
+                return true;
         }
 
-        dfsCycleVisited[vertex] = 0;
+        dfsCycleVisited[vertex] = false;
         return false;
     }
 
     bool isCyclic()
     {
-        int i, size = adjacency_list.size();
-        vector<int> visited(size, 0), dfsCycleVisited(size, 0);
-
-        for (i = 0; i < size; i++)
+        int i, len = adjacency_list.size();
+        vector<bool> visited(len, false), dfsCycleVisited(len, false);
+        for (i = 0; i < len; i++)
         {
             if (!visited[i])
                 if (DFS_CycleCheck(i, visited, dfsCycleVisited))
@@ -74,11 +69,13 @@ int main()
     Graph g(4); // total number of VERTEX in the graph
     cout << "\n**************************   Cycle Detection using BFS  ************************\n\n";
 
+    // EX - 1
     // g.set_edge(0, 1);
     // g.set_edge(1, 2);
     // g.set_edge(2, 3);
     // g.set_edge(3, 1);
 
+    // EX - 2
     g.set_edge(0, 1);
     g.set_edge(0, 2);
     g.set_edge(1, 2);
@@ -89,9 +86,9 @@ int main()
     bool isCyclic = g.isCyclic();
     cout << "isCyclic: " << isCyclic << endl;
     if (isCyclic)
-        cout << "\n      CYCLE DETECTED          \n";
+        cout << "\n      CYCLE DETECTED          \n\n";
     else
-        cout << "\n       NO CYCLE DETECTED       \n";
+        cout << "\n       NO CYCLE DETECTED       \n\n";
 
     return 0;
 }
