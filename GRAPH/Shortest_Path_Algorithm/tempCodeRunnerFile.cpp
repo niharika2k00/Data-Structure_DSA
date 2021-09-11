@@ -1,0 +1,1 @@
+rrVertex = " << currVerte
