@@ -48,7 +48,7 @@ void BellmanFord(vector<createGraph> &edgeList, int source, int totalVertex, int
         }
     }
 
-    // for negative cycles ---- Bellman not valid.
+    // for Checking negative cycles ---- Bellman not valid. [1 time traverse through all the edges]
     for (j = 0; j < totalEdge; j++)
     {
         u = edgeList[j].src;
