@@ -22,15 +22,15 @@ struct createGraph
 };
 
 // BELLMAN FORD ALGORITM FUNCTION
-void BellmanFord(vector<createGraph> &edgeList, int source, int vertex_total, int edge_total)
+void BellmanFord(vector<createGraph> &edgeList, int source, int totalVertex, int totalEdge)
 {
     int i, j, u, v, cost, flag = 0;
-    vector<int> dist(vertex_total, INT_MAX); // setting initial distances of the vertex is infinity
+    vector<int> dist(totalVertex, INT_MAX); // setting initial distances of the vertex is infinity
     dist[source] = 0;
 
-    for (i = 0; i < vertex_total; i++)
+    for (i = 0; i < totalVertex; i++) //  this loop runs for (n - 1) iteration [RULE]
     {
-        for (j = 0; j < edge_total; j++)
+        for (j = 0; j < totalEdge; j++)
         {
             //  _____  if edgeList is vector of vector  _____
             // u = edgeList[j][0];
@@ -48,8 +48,8 @@ void BellmanFord(vector<createGraph> &edgeList, int source, int vertex_total, in
         }
     }
 
-    // for negative cycles ---- Bellman not valid
-    for (j = 0; j < edge_total; j++)
+    // for negative cycles ---- Bellman not valid.
+    for (j = 0; j < totalEdge; j++)
     {
         u = edgeList[j].src;
         v = edgeList[j].dest;
@@ -67,7 +67,7 @@ void BellmanFord(vector<createGraph> &edgeList, int source, int vertex_total, in
     if (!flag)
     {
         cout << "______  Bellman Ford Algorithm   _________\n";
-        for (i = 0; i < edge_total; i++)
+        for (i = 0; i < totalEdge; i++)
             cout << i << "\t" << dist[i] << endl;
     }
 }
@@ -98,4 +98,15 @@ a.push_back(mypoint);
    OR 
 
  vec.push_back(constructor())
+ */
+
+/* 
+  EXPLAINATIONS :: 
+
+  1) Iterate (N - 1) times
+  2) Valid for Negative Edges 
+  3) InValid for Negative Cycles
+  4) Relaxation done (N - 1) times after that on Nth time while relaxation distance EILL NOT  modify , BUT 
+              if on Nth time further Relaxation takes place  then it has a NEGATIVE CYCLE. 
+
  */
