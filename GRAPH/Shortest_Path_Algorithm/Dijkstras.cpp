@@ -42,7 +42,7 @@ void Dijkstra(vector<pair<int, int>> graph[], int source, int n)
     }
     cout << "The distances from source, " << source << ", are : \n";
     for (int i = 1; i <= n; i++)
-        cout << distance[i] << " ";
+        cout << distance[i] << "\t";
     cout << "\n";
 }
 
@@ -83,7 +83,7 @@ EXPLAINATIONS ::
         3)   Initialise the Index 1 with cost 0
         4)   while (!Queue.empty()){
 
-                      Queue.top()  extract                     //  Queue (Cost , Vertex)
+                      Queue.top()  extract                     //  Queue (Cost , Vertex) as all operation is done on queue ->  first
                       traverse the adjacencyList with this vertex
                       Relaxation - and store the minimum distance
 
