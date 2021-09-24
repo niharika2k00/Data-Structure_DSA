@@ -118,16 +118,6 @@ int main(void)
 }
 
 // __________________   CREATION OF  Binary_Search_Tree.    _________________
-void insertNode()
-{
-    create();
-    if (root == NULL)
-        root = newnode;
-    else
-        binarySearch(root);
-    cout << "***** Successfully inserted a node in the Binary_Search_Tree  *******";
-}
-
 void create()
 {
     int value;
@@ -136,6 +126,16 @@ void create()
     newnode = (struct BST_Node *)malloc(sizeof(struct BST_Node));
     newnode->data = value;
     newnode->left = newnode->right = NULL;
+}
+
+void insertNode()
+{
+    create();
+    if (root == NULL)
+        root = newnode;
+    else
+        binarySearch(root);
+    cout << "***** Successfully inserted a node in the Binary_Search_Tree  *******";
 }
 
 // finding the position of the NEWNODE
@@ -284,7 +284,7 @@ void ancestors(struct BST_Node *root, int val)
 {
     if (root == NULL)
         return;
-    if (root->data == val)
+    if (root->data == val) // void return --> jumps oit from the function
         return;
     if (val > root->data)
     {

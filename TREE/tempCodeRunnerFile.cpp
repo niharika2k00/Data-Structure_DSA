@@ -1,3 +1,1 @@
-void delete ()
-{
-}
+nt key)
