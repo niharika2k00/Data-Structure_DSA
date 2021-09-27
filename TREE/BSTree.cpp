@@ -263,7 +263,7 @@ bool checkNodeExsist(struct BST_Node *root, int key)
 }
 
 // Find height of a tree, defined by the root node
-int tree_height(struct BST_Node *root)
+int tree_height(struct BST_Node *root) // Depth of the tree
 {
     int leftHt, rightHt;
     if (root == NULL)
@@ -321,14 +321,14 @@ int countNodes(struct BST_Node *root)
     if (root == NULL)
         return 0;
     else
-        return (countNodes(root->left) + countNodes(root->right) + 1);
+        return (countNodes(root->left) + countNodes(root->right) + 1); // left subtree + right subtree + 1
 }
 
 // checking Complete Binary_Search_Tree or Not
 // ITERATIVE METHOD  -----
 bool checkCompleteBT_iterative(struct BST_Node *root) // Iterative Method for checking Complete Binary_Search_Tree or Not
 {
-    bool flag = false;
+    bool flag = true;
     queue<BST_Node *> Q;
     Q.push(root);
 
@@ -337,26 +337,25 @@ bool checkCompleteBT_iterative(struct BST_Node *root) // Iterative Method for ch
         BST_Node *temp = Q.front();
         Q.pop();
 
-        // exsist
-        if (temp->left)
+        if (temp->left) // exsist ?
         {
-            if (flag == true)
+            if (flag == false)
                 return false;
 
             Q.push(temp->left);
         }
         else
-            flag = true;
+            flag = false; // Not Binary Tree
         // ------------------------
         if (temp->right)
         {
-            if (flag == true)
+            if (flag == false)
                 return false;
 
             Q.push(temp->right);
         }
         else
-            flag = true;
+            flag = false;
     }
     return true;
 }
