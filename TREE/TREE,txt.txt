@@ -1,0 +1,38 @@
+
+                                                      ________________________________________
+                                                                //      TREE      \\
+                                                      ________________________________________
+
+
+       1)  FULL BINARY TREE  -->  If every node has 0 or 2 children, in which all nodes except leaf nodes have two children. 
+                                                                
+               18                                                                 
+           /       \                                                                  
+         15         30  
+        /  \        /  \
+      40    50    100   40                                               
+
+
+              18
+            /     \  
+          40       30  
+                   /  \
+                 100   40
+
+
+       2) COMPLETE BINARY TREE  -->  If all the levels are completely filled except possibly the last level and the last level has all keys as LEFT as possible           
+
+              18
+           /       \  
+         15         30  
+        /  \        /  \
+      40    50    100   40
+     /  \   /
+    8   7  9 
+
+
+    3) PERFECT BINARY TREE -->  When all the internal nodes have two children and all leaf nodes are at the same level. 
+    
+               10
+           /       \  
+         15         30  
