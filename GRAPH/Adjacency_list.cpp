@@ -26,7 +26,7 @@ void printGraph(vector<int> adj[], int V)
 int main()
 {
     int V = 5, i;
-    vector<int> adj[V];
+    vector<int> adj[V]; // array of arrays (vector of vectors) --- static fixed size
     addEdge(adj, 0, 1);
     addEdge(adj, 0, 4);
     addEdge(adj, 1, 2);

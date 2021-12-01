@@ -10,7 +10,7 @@ public:
     int v;
     int index;
     // vector<string> Vertex = {"a", "b", "c", "d"};
-    vector<vector<int>> adjacency_list; // declaration --> Vecotr of Vector means 2D vector
+    vector<vector<int>> adjacency_list; // declaration --> Vecotr of Vector means 2D vector dynamic
 
     // CONSTRUCTOR
     Graph(int v)

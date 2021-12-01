@@ -53,7 +53,7 @@ public:
         int i;
         for (i = 0; i < adjacency_list.size(); i++)
         {
-            if (!visited[i])
+            if (!visited[i]) //  Not Visited
                 dfsUtil(i, visited);
         }
     }
