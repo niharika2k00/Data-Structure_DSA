@@ -10,10 +10,10 @@ using namespace std;
 
    - Store the Vertex in the adjacency list
   -  [LOOP] Frequency calculate in inDegree vector
-  -  [LOOP] Check if (inDegree[i] == 0)  ?  Queue.push(i)
+  -  [LOOP] Check if (inDegree[i] == 0)  ?  Queue.push(i)        // CONDITION
   -  [LOOP] FOR BFS ----->
 
-    # Time complexity: O(V + E) | Space complexity: O(V) for Stack 
+    # Time complexity: O(V + E) | Space complexity: O(V) for Stack
 */
 
 class Graph
@@ -36,16 +36,14 @@ public:
     void topological_Sort_BFS()
     {
         int size = adjacency_list.size(); // total Vertex
-        vector<int> inDegree(size, 0);    //  Number of edges dirrected to it (Node)
+        vector<int> inDegree(size, 0);    //  Number of edges directed to it (Node)
         vector<int> topoDisplay;
         queue<int> Q;
         int i, vertex;
 
         for (i = 0; i < size; i++)
-        {
             for (auto it : adjacency_list[i])
                 inDegree[it]++;
-        }
 
         for (i = 0; i < size; i++)
             if (inDegree[i] == 0)

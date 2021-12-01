@@ -50,8 +50,7 @@ public:
     void DFS()
     {
         vector<bool> visited(adjacency_list.size(), false); // vector <bool> A(10,false) + memory allocate
-        int i;
-        for (i = 0; i < adjacency_list.size(); i++)
+        for (int i = 0; i < adjacency_list.size(); i++)
         {
             if (!visited[i]) //  Not Visited
                 dfsUtil(i, visited);

@@ -7,15 +7,15 @@
 using namespace std;
 
 /* Topological sort:
-    # The edges of the graph can be unidirectional/bidirectional   ---->  DIRECTED GRAPH REQUIRED 
+    # The edges of the graph can be unidirectional/bidirectional   ---->  DIRECTED GRAPH REQUIRED
     # TSort is only POSSIBLE  when the graph is Directed Acyclic Graph (DAG).
-    # Requires a stack.
+    # Requires a STACK.
     # Run DFS on the graph and push each vertex in a stack after all its neighbours are visited.
       Pop each vertex from the stack and add it to a list to get the topologically sorted list of vertices.
     # 1st vertex in topological sorting is always a vertex with in-degree as 0 (a vertex with no incoming edges).
     # Linear orderring of Vertices i.e if there is an edge U --> V then U always comes before V.
 
-    # Time complexity: O(V + E) | Space complexity: O(V) for Stack 
+    # Time complexity: O(V + E) | Space complexity: O(V) for Stack
 */
 
 class Graph
@@ -35,12 +35,6 @@ public:
         adjacency_list[start].push_back(end);
     }
 
-    void neighbours_show()
-    {
-        int k = adjacency_list[0][1];
-        cout << "Node in list[0][1] : " << k << endl;
-    }
-
     void DFS(int start, vector<bool> &visited, stack<int> &Stack)
     {
         visited[start] = true;
@@ -57,9 +51,8 @@ public:
         vector<bool> visited(adjacency_list.size(), false); // vector <bool> A(10,false) + memory allocate
         stack<int> Stack;
         vector<int> topoDisplay;
-        int i;
 
-        for (i = 0; i < adjacency_list.size(); i++)
+        for (int i = 0; i < adjacency_list.size(); i++)
         {
             if (!visited[i]) //  not visited
                 DFS(i, visited, Stack);
@@ -89,7 +82,6 @@ int main()
     g.set_edge(5, 0);
     g.set_edge(5, 2);
 
-    // g.neighbours_show();
     g.topological_Sort();
 
     return 0;
