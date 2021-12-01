@@ -1,1 +1,1 @@
-rrVertex = " << currVerte
+curVtx
