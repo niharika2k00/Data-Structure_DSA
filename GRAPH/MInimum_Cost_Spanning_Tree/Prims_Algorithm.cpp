@@ -19,18 +19,18 @@ void ShowQueue(priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pa
 void Prims(vector<pair<int, int>> adjList[], int source, int n)
 {
     // priority_queue <Type, vector<Type>, ComparisonType > min_heap;
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> queue;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> PQ;
     vector<int> edgeWeight(n, INT_MAX);
     vector<int> parent(n, -1);
     vector<bool> mst(n, false);
 
     edgeWeight[0] = 0;
-    queue.push({0, 0});
+    PQ.push({0, 0});
 
-    while (!queue.empty())
+    while (!PQ.empty())
     {
-        int node = queue.top().second;
-        queue.pop();
+        int node = PQ.top().second;
+        PQ.pop();
 
         mst[node] = true;
 
@@ -43,7 +43,7 @@ void Prims(vector<pair<int, int>> adjList[], int source, int n)
             {
                 edgeWeight[dest] = cost;
                 parent[dest] = node;
-                queue.push({edgeWeight[dest], dest});
+                PQ.push({edgeWeight[dest], dest});
             }
         }
     }
@@ -75,14 +75,18 @@ int main()
 EXPLAINATIONS ::
 
         1)  Set the adjacency list  graph[src].push_back(make_pair(dest , cost))
-        2)  Create MIN_HEAP  &  distance vector ( to store the cost )
-        3)  Initialise the Index 1 with cost 0
-        4)   While (!Queue.empty()){
+        2)  Create MIN_HEAP  &  edgeWeight vector ( to store the cost )
+        3)  Initialise  :
+                            edgeWeight[0] = 0;
+                            PQ.push({0, 0});
 
-                      Queue.top()  extract                     //  Queue (Cost , Vertex) as all operation is done on queue ->  first
-                      traverse the adjacencyList with this vertex
-                      Relaxation - and store the minimum distance
+        4)   While (!Queue.empty()){
+                      Compare the weight/cost and of the connected/neighbouring nodes and push into Queue
 
         5) when the distance[cost] array is Set then traverse it
 
  */
+
+/* it->first simply means(*it).first-- -- > It is a pointer pointing to your variable which has a member first, so to access first, you just dereference the pointer then use.to access the member
+In the first loop, you use iterators to iterate over the container M. Iterators emulate pointers, and have to be dereferenced to give the value the iterator is "pointing" at. In fact, for that loop, it->first is really the same as (*it).first.
+In the second loop, you loop over the values in the container M. The loop itself uses iterators internally and dereferences them for you. This reference about "range-based for loops" might help you. */
