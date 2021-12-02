@@ -22,6 +22,7 @@ void ShowQueue(priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pa
 
 void Dijkstra(vector<pair<int, int>> graph[], int source, int n)
 {
+    // priority_queue <Type, vector<Type>, ComparisonType > min_heap;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> queue; // min-heap ; In pair => (dist,from)
     vector<int> distance(n + 1, INT_MAX);                                                  // 1-indexed array for calculating shortest paths (set initially infinite);
 
@@ -30,9 +31,9 @@ void Dijkstra(vector<pair<int, int>> graph[], int source, int n)
 
     while (!queue.empty())
     {
-        int neighbourDist = queue.top().first;
+        int dist = queue.top().first;
         int curVtx = queue.top().second;
-        cout << " Cost = " << neighbourDist << " Current Vertex = " << curVtx << endl;
+        cout << " Cost = " << dist << " Current Vertex = " << curVtx << endl;
 
         queue.pop();
 
