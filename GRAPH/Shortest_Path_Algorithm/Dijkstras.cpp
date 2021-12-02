@@ -53,7 +53,7 @@ void Dijkstra(vector<pair<int, int>> graph[], int source, int n)
         ShowQueue(queue);
     }
 
-    cout << "The distances from source, " << source << ", are : \n";
+    cout << "\n *************    Dijkstra's  Algorithm  starting Node " << source << " :   ****************\n";
     for (int i = 1; i <= n; i++)
         cout << distance[i] << "\t";
 }
@@ -61,7 +61,7 @@ void Dijkstra(vector<pair<int, int>> graph[], int source, int n)
 int main()
 {
     int n = 4;
-    vector<pair<int, int>> graph[n + 1];
+    vector<pair<int, int>> graph[n + 1]; // 2D Array of pairs
 
     // 1-indexed adjacency list for of graph
     // graph[src].push_back(make_pair(dest , cost));
@@ -82,6 +82,7 @@ int main()
     } */
 
     Dijkstra(graph, 1, n);
+
     return 0;
 }
 

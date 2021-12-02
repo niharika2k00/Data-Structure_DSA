@@ -16,28 +16,58 @@ void ShowQueue(priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pa
     }
 }
 
-void Dijkstra(vector<pair<int, int>> graph[], int source, int n)
+void Prims(vector<pair<int, int>> adjList[], int source, int n)
 {
     // priority_queue <Type, vector<Type>, ComparisonType > min_heap;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> queue;
-    vector<int> distance(n + 1, INT_MAX);
+    vector<int> edgeWeight(n, INT_MAX);
+    vector<int> parent(n, -1);
+    vector<bool> mst(n, false);
 
-    cout << "The distances from source, " << source << ", are : \n";
-    for (int i = 1; i <= n; i++)
-        cout << distance[i] << "\t";
+    edgeWeight[0] = 0;
+    queue.push({0, 0});
+
+    while (!queue.empty())
+    {
+        int node = queue.top().second;
+        queue.pop();
+
+        mst[node] = true;
+
+        for (auto it = adjList[node].begin(); it != adjList[node].end(); it++)
+        {
+            int dest = it->first;
+            int cost = it->second;
+
+            if (mst[dest] == false && cost < edgeWeight[dest])
+            {
+                edgeWeight[dest] = cost;
+                parent[dest] = node;
+                queue.push({edgeWeight[dest], dest});
+            }
+        }
+    }
+
+    cout << "\n *************    Prim's Minimum Spanning Tree (MST) | Greedy Algorithm   ****************\n";
+    for (int i = 1; i < n; i++)
+        cout << parent[i] << " -> " << i << " \n";
 }
 
 int main()
 {
-    int n = 4;
-    vector<pair<int, int>> graph[n + 1];
+    int n = 5;
+    vector<pair<int, int>> adjList[n];
 
-    graph[1].push_back(make_pair(4, 8));
-    graph[1].push_back(make_pair(2, 4));
-    graph[3].push_back(make_pair(2, 1));
-    graph[4].push_back(make_pair(3, 8));
+    // Undirected Graph          0  --->   (1 , 2)   ===   source  --->   (destination  ,  cost)
+    adjList[0].push_back(make_pair(1, 2));
+    adjList[0].push_back(make_pair(3, 6));
+    adjList[1].push_back(make_pair(3, 8));
+    adjList[1].push_back(make_pair(4, 5));
+    adjList[1].push_back(make_pair(2, 3));
+    adjList[2].push_back(make_pair(4, 7));
 
-    Prims(graph, 1, n);
+    Prims(adjList, 0, n);
+
     return 0;
 }
 
