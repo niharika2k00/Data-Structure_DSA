@@ -99,5 +99,4 @@ EXPLAINATIONS ::
                       Relaxation - and store the minimum distance
 
         5) when the distance[cost] array is Set then traverse it
-
  */

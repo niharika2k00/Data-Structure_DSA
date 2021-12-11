@@ -17,7 +17,7 @@ public:
     {
         index = 0;
         this->v = v;
-        adjacency_list.resize(6);
+        adjacency_list.resize(v);
     }
 
     /*   void vertexInsert()
@@ -90,7 +90,7 @@ public:
 
 int main()
 {
-    Graph g(6);
+    Graph g(4);
     cout << "\n**************************   Breath First Traversal  ************************\n";
     // g.vertexInsert();
 
