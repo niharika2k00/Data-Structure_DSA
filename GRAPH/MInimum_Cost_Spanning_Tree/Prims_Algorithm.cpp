@@ -89,4 +89,6 @@ EXPLAINATIONS ::
 
 /* it->first simply means(*it).first-- -- > It is a pointer pointing to your variable which has a member first, so to access first, you just dereference the pointer then use.to access the member
 In the first loop, you use iterators to iterate over the container M. Iterators emulate pointers, and have to be dereferenced to give the value the iterator is "pointing" at. In fact, for that loop, it->first is really the same as (*it).first.
-In the second loop, you loop over the values in the container M. The loop itself uses iterators internally and dereferences them for you. This reference about "range-based for loops" might help you. */
+
+for (auto it : arr){ }
+In this loop over the values in the container M. The loop itself uses iterators internally and dereferences them for us. This reference about "range-based for loops" might help you. */
