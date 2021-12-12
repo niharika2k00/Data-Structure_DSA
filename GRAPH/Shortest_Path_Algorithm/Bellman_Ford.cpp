@@ -12,7 +12,7 @@ struct createGraph
     int dest;
     int weight;
 
-    // constructor
+    // Constructor
     createGraph(int start, int end, int wt)
     {
         src = start;
@@ -91,22 +91,22 @@ int main()
     return 0;
 }
 
-/* 
+/*
 point mypoint = {0, 1};
 a.push_back(mypoint);
 
-   OR 
+   OR
 
  vec.push_back(constructor())
  */
 
-/* 
-  EXPLAINATIONS :: 
+/*
+  EXPLAINATIONS ::
 
   1) Iterate (N - 1) times
-  2) Valid for Negative Edges 
+  2) Valid for Negative Edges
   3) InValid for Negative Cycles
-  4) Relaxation done (N - 1) times after that on Nth time while relaxation distance EILL NOT  modify , BUT 
-              if on Nth time further Relaxation takes place  then it has a NEGATIVE CYCLE. 
+  4) Relaxation done (N - 1) times after that on Nth time while relaxation distance EILL NOT  modify , BUT
+              if on Nth time further Relaxation takes place  then it has a NEGATIVE CYCLE.
 
  */

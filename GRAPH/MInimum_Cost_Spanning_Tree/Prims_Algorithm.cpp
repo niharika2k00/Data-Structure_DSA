@@ -25,7 +25,7 @@ void Prims(vector<pair<int, int>> adjList[], int source, int n)
     vector<bool> mst(n, false);
 
     edgeWeight[0] = 0;
-    PQ.push({0, 0});
+    PQ.push({0, 0}); //  {cost , node} --> as we are finding Min Cost, thus taking first parameter of MINHEAP as Cost
 
     while (!PQ.empty())
     {
