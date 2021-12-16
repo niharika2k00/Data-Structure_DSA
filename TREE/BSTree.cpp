@@ -200,14 +200,14 @@ void postOrder(struct BST_Node *tree)
 // LEVEL ORDER TRAVERSAL using Queue
 void levelOrderTraversal(struct BST_Node *root) //  Time Complexity : O(n)
 {
-    /* 
-       =====  ALGORITHM ====== 
+    /*
+       =====  ALGORITHM ======
        if(root == NULL) return
        else
        {
           *  create a QUEUE data structure
           *  enqueue the root
-          *  Loop unless Q not Empty 
+          *  Loop unless Q not Empty
                      --- print ---
                      Dequeue(remove) the front node
                      check its left child     ? Q.push()
@@ -243,23 +243,21 @@ bool checkNodeExsist(struct BST_Node *root, int key)
     if (root == NULL)
         return false;
 
-    else if (root->data == key)
+    if (root->data == key)
         return true;
 
-    else if (root->left != NULL)
+    if (root->left) //  If Exsist
     {
         responseL = checkNodeExsist(root->left, key);
         if (responseL)
             return true;
     }
-    else if (root->right != NULL)
+    if (root->right)
     {
         responseR = checkNodeExsist(root->right, key);
         if (responseR)
             return true;
     }
-    else
-        return false;
 }
 
 // Find height of a tree, defined by the root node
@@ -279,7 +277,7 @@ int tree_height(struct BST_Node *root) // Depth of the tree
     }
 }
 
-// Find all the ANCESTORS of a node
+// Find all the ANCESTORS (Parent)  of a node
 void ancestors(struct BST_Node *root, int val)
 {
     if (root == NULL)
