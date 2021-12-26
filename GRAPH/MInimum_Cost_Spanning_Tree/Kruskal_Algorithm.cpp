@@ -43,10 +43,11 @@ void Union(int x, int y, vector<int> &parent, vector<int> &rank)
     else if (rank[rootX] > rank[rootY])
         parent[rootY] = rootX;
 
+    // When both have same AbsoluteRoot
     else
     {
-        parent[rootY] = rootX;
-        rank[rootX]++;
+        parent[rootX] = rootY;
+        rank[rootY]++;
     }
 }
 
@@ -80,8 +81,8 @@ int main()
     int n = 4; // Nodes
     vector<createGraph> edgeList;
     edgeList.push_back(createGraph(0, 1, 4));
-    edgeList.push_back(createGraph(0, 3, 5));
-    edgeList.push_back(createGraph(2, 1, 12));
+    edgeList.push_back(createGraph(0, 3, 8));
+    edgeList.push_back(createGraph(2, 1, 11));
     edgeList.push_back(createGraph(3, 2, 3));
 
     sort(edgeList.begin(), edgeList.end(), comp); //  sort acc to weight

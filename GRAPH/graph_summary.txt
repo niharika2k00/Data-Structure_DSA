@@ -37,7 +37,7 @@
 
 # DFS (Depth First Traversal) : Traverse a vertex till its END.
 
-DAG -> Directed Acyclic Graph.
+      DAG -> Directed Acyclic Graph.
 
 
 
@@ -87,7 +87,7 @@ Kruskal Algorithm--->  *Always select the min cost edge
 
 
 #Time complexities:
-   BFS : O(V + E)
+   BFS / DFS : O(V + E)
    Dijkstra : O( (N + E ) log N)   =>  O(N log N) 
    Bellman - Ford : O(V.E) = O(n^2)
    Floyd - Warshall : O(V ^ 3)

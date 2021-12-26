@@ -60,7 +60,7 @@ public:
 
 int main()
 {
-    Graph g(6);
+    Graph g(5);
     cout << "\n**************************   Depth First Traversal  ************************\n";
     g.set_edge(0, 1);
     g.set_edge(0, 2);

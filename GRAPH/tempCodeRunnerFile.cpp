@@ -1,2 +1,1 @@
-   Stack.push(start);
-    }
+*

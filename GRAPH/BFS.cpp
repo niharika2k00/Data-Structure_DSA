@@ -110,3 +110,12 @@ int main()
 }
 
 // Note : We are taking 0 ZERO indexing vector , where the 1st vertex is 0.  +   Directed Graph.
+
+/*
+        Time Complexity
+
+     * While () loop runs V times (total no of verices as each vertices enqueue/dequeue 1 times)
+     * Inner Loop runs E times (adjacent edges)
+
+
+ */
