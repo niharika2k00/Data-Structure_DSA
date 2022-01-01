@@ -27,7 +27,7 @@ bool checkNodeExsist(struct BST_Node *root, int key);
 int tree_height(struct BST_Node *root);
 void ancestors(struct BST_Node *root, int val);
 BST_Node *commonAncestors(struct BST_Node *root, int a, int b);
-void deleteNode(struct BST_Node *root);
+BST_Node *deleteNode(struct BST_Node *root, int key);
 void isHeap(struct BST_Node *root);
 
 int main(void)
@@ -103,7 +103,10 @@ int main(void)
             cout << nodeVal->data << "\t";
             break;
         case 10:
-            deleteNode(root);
+            cout << "______ Delete a NODE in BST ______\n";
+            cout << "Node You Want to Delete : ";
+            cin >> key;
+            deleteNode(root, key);
             break;
         case 11:
             isHeap(root);
@@ -197,7 +200,7 @@ void postOrder(struct BST_Node *tree)
     cout << tree->data;
 }
 
-// LEVEL ORDER TRAVERSAL using Queue
+// LEVEL ORDER TRAVERSAL   OR    BREADTH FIRST SEARCH (BFS)   using Queue
 void levelOrderTraversal(struct BST_Node *root) //  Time Complexity : O(n)
 {
     /*
@@ -260,7 +263,7 @@ bool checkNodeExsist(struct BST_Node *root, int key)
     }
 }
 
-// Find height of a tree, defined by the root node
+// Find HEIGHT / DEPTH  of a tree, defined by the root node
 int tree_height(struct BST_Node *root) // Depth of the tree
 {
     int leftHt, rightHt;
@@ -282,7 +285,7 @@ void ancestors(struct BST_Node *root, int val)
 {
     if (root == NULL)
         return;
-    if (root->data == val) // void return --> jumps oit from the function
+    if (root->data == val) // void return --> jumps out of the function
         return;
     if (val > root->data)
     {
@@ -308,12 +311,72 @@ BST_Node *commonAncestors(struct BST_Node *root, int a, int b)
     return root;
 }
 
+//  ------------------------------------------------------
 // DELETE A NODE OF A BINARY TREE
-void deleteNode(struct BST_Node *)
+// -------------------------------------------------------
+
+BST_Node *LastRightChild_Finder(BST_Node *root)
 {
-    cout << "Successfully deleted \n";
+    if (root->right == NULL) // means Last Child
+        return root;
+
+    LastRightChild_Finder(root->right);
 }
 
+BST_Node *Helper(BST_Node *root)
+{
+    if (root->right == NULL)
+        return root->left;
+
+    if (root->left == NULL)
+        return root->right;
+
+    BST_Node *RightChild = root->right;
+    BST_Node *LastChild = LastRightChild_Finder(root->left); //  Root->Left Max Node(at the right) will get connected with the Right SubTree.
+    LastChild->right = RightChild;
+
+    return root->left;
+}
+
+BST_Node *deleteNode(struct BST_Node *root, int key)
+{
+    if (!root)
+        return NULL;
+
+    if (root->data == key)
+        Helper(root);
+
+    BST_Node *storeRoot = root; // storing the root as later it may change
+
+    while (root != NULL)
+    {
+        if (key > root->data) //  Right Subtree
+        {
+            if (root->right && root->right->data == key)
+            {
+                root->right = Helper(root->right);
+                break;
+            }
+            else
+                root = root->right;
+        }
+
+        else if (key < root->data) // Left Subtree
+        {
+            if (root->left && root->left->data == key)
+            {
+                root->left = Helper(root->left);
+                break;
+            }
+            else
+                root = root->left;
+        }
+    }
+
+    return storeRoot;
+}
+
+// _______________________   COUNT NUMBER OF NODES   _________________________
 int countNodes(struct BST_Node *root)
 {
     if (root == NULL)

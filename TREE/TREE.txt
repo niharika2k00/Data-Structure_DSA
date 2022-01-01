@@ -36,3 +36,7 @@
                10
            /       \  
          15         30  
+
+
+        ::  BST properties  ::
+    4)  Inorder Traversal -->  nodes are in sorted order   
