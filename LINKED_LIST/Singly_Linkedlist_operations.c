@@ -11,7 +11,7 @@ struct node
     int data;
     struct node *next;
 };
-struct node *start = NULL, *q = NULL, *p = NULL; //start - global variable
+struct node *start = NULL, *q = NULL, *p = NULL; // start - global variable
 
 // prototypes......
 void create();
@@ -171,7 +171,7 @@ void display(struct node *start) // display using recursion
     display(ptr->next);
 }
 
-/* void display()               // diaplay normally
+/* void display()               // Iterative Method
 {
     printf("\n <------------- Display Successfully ------------->\n");
     struct node *ptr;
@@ -185,16 +185,15 @@ void display(struct node *start) // display using recursion
 
 void addbeginning()
 {
-    struct node *ptr, *newnode;
+    struct node *newnode;
     int num;
     printf("####### _______ ADD NODE BEGINNING  ________########  \n\n");
     printf("Enter a value of the node that must be entered at the beginning --> ");
     scanf("%d", &num);
     newnode = (struct node *)malloc(sizeof(struct node));
     newnode->data = num;
-    ptr = start;
+    newnode->next = start;
     start = newnode;
-    newnode->next = ptr;
     printf("\nNODE SUCCESSFULLY ADDED AT THE BEGINNING\n");
 }
 
@@ -274,7 +273,6 @@ void delend()
     ptr = start;
     while (ptr->next != NULL)
     {
-        /* code */
         preptr = ptr;
         ptr = ptr->next;
     }
@@ -292,7 +290,6 @@ void delany_givennode()
     ptr = start;
     while (ptr->data != value)
     {
-        /* code */
         preptr = ptr;
         ptr = ptr->next;
     }
@@ -327,7 +324,7 @@ void maxNode()
         max = start->data;
         while (current->next != NULL)
         {
-            if (max < current->data)
+            if (max < current->data) //  CPP : max = max(current->data, max);
                 max = current->data;
             current = current->next;
         }
@@ -387,7 +384,7 @@ void maxNode()
 }
  */
 
-void Reverse(struct node *p) //Time Complexity: O(n), Recursive method .(BEST)
+void Reverse(struct node *p) // Time Complexity: O(n), Recursive method (BEST)
 {
     if (p->next == NULL)
     {
@@ -518,7 +515,7 @@ void reversePrint(struct node *start)
         printf("***** Printing Reverse linked - list :: *****\n");
         return;
     }
-    reversePrint(start->next);
+    reversePrint(start->next); //  Backtracking
     printf("%d\t", start->data);
 }
 
