@@ -200,7 +200,7 @@ void postOrder(struct BST_Node *tree)
     cout << tree->data;
 }
 
-// LEVEL ORDER TRAVERSAL   OR    BREADTH FIRST SEARCH (BFS)   using Queue
+// LEVEL ORDER TRAVERSAL   OR    BREADTH FIRST SEARCH (BFS)   using Queue      Iterative BFS
 void levelOrderTraversal(struct BST_Node *root) //  Time Complexity : O(n)
 {
     /*
@@ -267,7 +267,7 @@ bool checkNodeExsist(struct BST_Node *root, int key)
 int tree_height(struct BST_Node *root) // Depth of the tree
 {
     int leftHt, rightHt;
-    if (root == NULL)
+    if (!root)
         return 0;
     else
     {

@@ -9,7 +9,7 @@ struct node
     int data;
     struct node *next;
 };
-struct node *start = NULL; //start - global variable
+struct node *start = NULL; // start - global variable
 
 // prototype
 void create();
@@ -19,7 +19,7 @@ void swap(struct node *a, struct node *b);
 
 int main(void)
 {
-    int option;   
+    int option;
 
     do
     {
@@ -121,7 +121,6 @@ void bubble_sort(struct node *start)
 
     } while (swapped);
     // return ;
-
 
     printf("-------- SUCCESSFULLY SORTED ------");
 }

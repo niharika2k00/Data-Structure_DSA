@@ -146,7 +146,7 @@ void create()
         newnode->data = num;
         if (start == NULL)
         {
-            start = newnode;
+            start = newnode; // head / start pointing to the Linked List.
             newnode->next = NULL;
         }
         else

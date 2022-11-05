@@ -26,13 +26,13 @@ int main()
         switch (choice)
         {
         case 1:
-            insert();
+            push();
             break;
         case 2:
-            delete ();
+            pop();
             break;
         case 3:
-            display();
+            traverse();
             break;
         case 4:
             exit(1);
@@ -42,7 +42,7 @@ int main()
     }
 }
 
-void insert() // insert , push enqueue same
+void push() // insert , push enqueue same
 {
     int num;
     printf("Inset the element in queue : ");
@@ -54,12 +54,12 @@ void insert() // insert , push enqueue same
         if ((front == -1) && (rear == -1))
             front = rear = 0; /*If queue is initially empty */
         else
-            rear = rear + 1;
+            rear++;
         queue_array[rear] = num;
     }
 }
 
-void delete () // pop , dequeue same
+void pop() // pop , dequeue same
 {
     if (front == -1 || front > rear)
     {
@@ -69,11 +69,11 @@ void delete () // pop , dequeue same
     else
     {
         printf("Element deleted from queue is : %d\n", queue_array[front]);
-        front = front + 1;
+        front++;
     }
 }
 
-void display()
+void traverse()
 {
     int i;
     if ((front == -1) && (rear == -1))
